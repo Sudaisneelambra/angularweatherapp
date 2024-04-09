@@ -1,32 +1,39 @@
-<div class="w-full h-screen bg-[#ffffff] grid place-items-center" >
-   <div class="w-[70%] h-[80%] bg-[#448ee371] flex flex-col items-center rounded-3xl" >
-        <div class="flex  justify-around py-4 w-full items-center">
-            <h1>PALAKKAD</h1>
-            <input type="text" name="" id="" class="h-[40px] w-[280px]">
-            <img src="/assets/avathar.png" alt="prof" class="h-[40px] rounded-full border-2">
-        </div>
-        <div class="border-2 flex justify-around mt-2 pb-10 w-[85%] bg-[#f4edff] pt-4">
-            <div class="w-[150px] h-[150px] border-2 rounded-[10px]" style="background-image: linear-gradient(to right bottom, #5c6ce7, #6b7ce7, #d2d2d5);"
+<div class="main w-full h-screen bg-[#efefef] grid place-items-center">
+   <div class="w-[70%] h-[80%] bg-[#fbfbfb] flex flex-col items-center rounded-3xl" >
+        <app-header class=" w-full"
+        [placeName]="placeName"
+        [nationality]="nationality"
+        ></app-header>
+        <div class="rounded-2xl flex justify-around mt-2 pb-10 w-[85%] bg-[#f4edff] pt-4">
+            <div class="w-[150px] h-[150px]  rounded-[10px] flex items-center flex-col" style="background-image: linear-gradient(to right bottom, #5c6ce7, #6b7ce7, #d2d2d5);"
             >
-                hhhh
+            <div class="w-[100px] h-[25px] bg-[#f4edff] rounded-xl translate-y-[-40%] flex justify-center items-center"><p class="text-[10px]">{{formattedDate}}</p></div>
+            <h1 class="text-[20px]">{{weathertype}}</h1>
+            <h1 class="text-[50px] pl-4">{{(temperature/10).toFixed(0)}}<sup>°</sup></h1>   
             </div>
-            <div class="border-2">
-                <img src="/assets/weather-sun-cloud-rain-512.webp" alt="bjfsj" class="h-[150px]">
+            <div class="">
+                <img src="{{weathericon}}" alt="bjfsj" class="h-[150px]">
             </div>
         </div>
-        <div class="w-[60%] h-[140px] rounded-xl bg-[#448ee371] translate-y-[-10%] flex justify-between items-center px-2">
-            <div class="w-[100px] h-[100px] border-2 bg-[gray]"></div>
-            <div class="w-[100px] h-[100px] border-2 bg-[gray]"></div>
-            <div class="w-[100px] h-[100px] border-2 bg-[gray]"></div>
+        <div class="w-[60%] h-[140px] rounded-xl bg-[white] translate-y-[-10%] flex justify-around items-center px-2">
+            <div class="w-[100px] h-[100px] rounded-md flex justify-center items-center  flex-col">
+                <h1>wind</h1>
+                <img src="/assets/wind.png" alt="" class="w-[30%]">
+                <h1>{{wind}} km/h</h1>
+            </div>
+            <div class="w-[100px] h-[100px] rounded-md flex justify-center items-center  flex-col">
+                <h1>humidity</h1>
+                <img src="/assets/humidity.png" alt="" class="w-[30%]">
+                <h1>{{humidity}}%</h1>
+            </div>
+            <div class="w-[100px] h-[100px] rounded-md flex justify-center items-center  flex-col">
+                <h1>sealevel</h1>
+                <img src="/assets/high-tide.png" alt="" class="w-[30%]">
+                <h1>{{sealevel}}</h1>
+            </div>
         </div>
         <h1 class=" w-[90%]">UPCOMINGFOURDAYS</h1>
-        <div class=" w-[90%] h-[130px] flex items-center justify-evenly">
-            <div class="w-[100px] h-[100px] border-2 rounded-md bg-[#ffffff]"></div>
-            <div class="w-[100px] h-[100px] border-2 rounded-md bg-[white]"></div>
-            <div class="w-[100px] h-[100px] border-2 rounded-md bg-[white]"></div>
-            <div class="w-[100px] h-[100px] border-2 rounded-md bg-[white]"></div>
-            <div class="w-[100px] h-[100px] border-2 rounded-md bg-[white]"></div>
-        </div>
+            <app-weatherdescription class="border-2 w-[90%]"></app-weatherdescription>
    </div>
 
 </div>
