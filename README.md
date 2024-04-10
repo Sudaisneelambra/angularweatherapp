@@ -6,7 +6,9 @@ Prerequisites: Node.js & npm (or yarn)
 
 Installation:
 
-Clone repo ([invalid URL removed])
+Clone repo 
+
+
 cd angular-weather-app
 npm install (or yarn install)
 
