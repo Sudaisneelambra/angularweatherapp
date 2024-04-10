@@ -18,8 +18,3 @@ Run:
 
 ng serve (opens app in browser)
 
-Features:
-
-Auto location & weather
-City search with error messages
-Current & 5-day forecast
