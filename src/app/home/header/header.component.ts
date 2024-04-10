@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,4 +8,10 @@ import { Component, Input } from '@angular/core';
 export class HeaderComponent {
 @Input() placeName:any
 @Input() nationality:any
+@Output() serchvalue=new EventEmitter<any>()
+
+
+searching(val:any){
+  this.serchvalue.emit(val)
+}
 }

@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-weatherdescription',
+  selector: 'app-futureforcast',
   templateUrl: './futureforcast.component.html',
   styleUrls: ['./futureforcast.component.css']
 })
 export class WeatherdescriptionComponent {
+
+  @Input() dailyForecastsArray:any
 
 }

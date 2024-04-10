@@ -1,8 +1,8 @@
 <div class="flex  justify-around py-4 w-full items-center">
     <h1>{{placeName}} | {{nationality}}</h1>
     <div class="flex h-[40px] w-[280px] bg-white rounded-md justify-between items-center overflow-hidden border-[2px]">
-        <input type="text" name="" id="" class="h-[40px] outline-none pl-4">
-        <img src="/assets/search-interface-symbol.png" alt="" class="h-[25px] pr-2">
+        <input type="text" name="" id="" class="h-[40px] outline-none pl-4" #inputvalue (keyup.enter)="searching(inputvalue.value)">
+        <img src="/assets/search-interface-symbol.png" alt="" class="h-[25px] pr-2" (click)="searching(inputvalue.value)" >
     </div>
     <img src="/assets/avathar.png" alt="prof" class="h-[40px] rounded-full border-2">
 </div>

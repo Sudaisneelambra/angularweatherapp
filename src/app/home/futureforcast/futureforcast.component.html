@@ -1,7 +1,18 @@
 <div class="forcast w-[100%] h-[130px] flex items-center justify-evenly overflow-scroll gap-2">
-    <div class="min-w-[100px] h-[100px] border-2 rounded-md bg-[#ffffff]"></div>
-    <div class="min-w-[100px] h-[100px] border-2 rounded-md bg-[white]"></div>
-    <div class="min-w-[100px] h-[100px] border-2 rounded-md bg-[white]"></div>
-    <div class="min-w-[100px] h-[100px] border-2 rounded-md bg-[white]"></div>
-    <div class="min-w-[100px] h-[100px] border-2 rounded-md bg-[white]"></div>
+    <ng-container *ngFor="let dt of dailyForecastsArray; let i =index">
+        <div class="min-w-[100px] h-[100px] shadow-md rounded-md bg-[#ffffff] flex flex-col justify-center items-center" *ngIf="dailyForecastsArray.length <= 5 || dailyForecastsArray.length > 5 && i !== 0">
+            <h3 class="font-[cursive] text-[10px] mt-2">{{ dt?.day }}</h3>
+            <img
+            [src]="'https://api.openweathermap.org/img/w/' + (dt?.icons?.[0]) + '.png'"
+            alt="icon"
+            class="h-[35px]"
+            />
+            <p class="weather font-[cursive] text-[12px]">
+                {{ dt?.descriptions?.[0] }}
+              </p>
+              <span class=""
+              >{{ (dt?.temperatures?.[0] / 10).toFixed(1) }}°</span
+            >
+        </div>
+    </ng-container>
 </div>

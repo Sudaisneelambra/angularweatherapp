@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
 
 @Injectable({
@@ -8,8 +9,8 @@ import { environment } from 'src/environment/environment';
 export class WeatherserviceService {
 
   WeatherApi=environment.WEATHER_API
-  weatherapiwithcity=environment.Weather_API_WITH_CITY
   weatherApiKey=environment.WEATHER_API_kEY
+  WeatherForcatApi=environment.Wether_API_Future
   
   constructor(private http:HttpClient) { }
 
@@ -51,12 +52,19 @@ export class WeatherserviceService {
     });
 }
 
-  getcurrentweather(lat:any,log:any){
+  getcurrentweather(lat:any,log:any):Observable<any>{
   return this.http.get<any>(`${this.WeatherApi}lat=${lat}&lon=${log}&appid=${ this.weatherApiKey}`)
  }
 
- getweatherwithcity(city:any){
-   return this.http.get<any>(`${this.weatherapiwithcity}q=${city}&units=metric&appid=${this.weatherApiKey}`)
+ getweatherwithcity(city:any):Observable<any>{
+   return this.http.get<any>(`${this.WeatherApi}q=${city}&units=metric&appid=${this.weatherApiKey}`)
+ }
 
+ getfutureforcast(lat:any,long:any):Observable<any>{
+  return this.http.get(`${this.WeatherForcatApi}lat=${lat}&lon=${long}&appid=${ this.weatherApiKey}`)
+ }
+
+ getfutureforcastsearch(city:any):Observable<any>{
+  return this.http.get(`${this.WeatherForcatApi}q=${city}&appid=${ this.weatherApiKey}`)
  }
 }
