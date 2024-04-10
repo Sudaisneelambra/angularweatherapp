@@ -1,27 +1,25 @@
-# Weather
+Angular Weather App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.11.
+This project is an Angular weather application that displays current weather information and a five-day forecast for a user's current location or for a specified city. It also handles errors gracefully when the specified city is not found.
 
-## Development server
+Prerequisites: Node.js & npm (or yarn)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Installation:
 
-## Code scaffolding
+Clone repo ([invalid URL removed])
+cd angular-weather-app
+npm install (or yarn install)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+Set up environment variables:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+Run:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ng serve (opens app in browser)
 
-## Running end-to-end tests
+Features:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Auto location & weather
+City search with error messages
+Current & 5-day forecast
