@@ -16,6 +16,8 @@ export class WeatherserviceService {
 
   latitude:any
   longitude:any
+  errorboolean:boolean=false
+  errordata:string=''
 
 
   getcurrentlocation(): Promise<{ latitude: number, longitude: number }>{
@@ -30,23 +32,24 @@ export class WeatherserviceService {
                 (error) => {
                     switch (error.code) {
                         case error.PERMISSION_DENIED:
-                            alert('User canceled the request for Geolocation. Please give permission.');
-                            console.log('User canceled the request for Geolocation.');
+                            this.errorboolean=true
+                            this.errordata='User denied the request for Geolocation. Please give permission.'
                             break;
                         case error.POSITION_UNAVAILABLE:
-                            alert('Location information is unavailable.');
-                            console.log('Location information is unavailable.');
+                          this.errorboolean=true
+                          this.errordata='Location information is unavailable.'
                             break;
                         case error.TIMEOUT:
-                            alert('Get user location timed out.');
-                            console.log('Get user location timed out.');
+                          this.errorboolean=true
+                          this.errordata='Get user location timed out.'
                             break;
                     }
                     reject(error);
                 }
             );
         } else {
-            console.log('Geolocation is not supported by this browser.');
+          this.errorboolean=true
+          this.errordata='Geolocation is not supported by this browser.'
             reject('Geolocation is not supported by this browser.');
         }
     });

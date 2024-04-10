@@ -1,40 +1,93 @@
-<div class="main w-full h-screen  grid place-items-center">
-   <div class="w-[70%] h-[80%] bg-[#f9f9f9] flex flex-col items-center rounded-3xl" >
-        <app-header class=" w-full"
-        [placeName]="placeName"
-        [nationality]="nationality"
-        (serchvalue)="search($event)"
-        ></app-header>
-        <div class="sin rounded-2xl flex justify-around mt-2 pb-10 w-[85%] bg-[#f4edff] pt-4 ">
-            <div class="w-[150px] h-[150px]  rounded-[10px] flex items-center flex-col" style="background-image: linear-gradient(to right bottom, #5c6ce7, #6b7ce7, #d2d2d5);"
-            >
-            <div class="w-[100px] h-[25px] bg-[#ffff] rounded-xl translate-y-[-40%] flex justify-center items-center"><p class="text-[10px]">{{formattedDate}}</p></div>
-            <h1 class="text-[15px] text-[white]">{{weathertype}}</h1>
-            <h1 class="text-[50px] pl-4 text-[white]">{{(temperature >= 100 ? (temperature / 10) : temperature)?.toFixed(0)}}<sup>°</sup></h1>   
-            </div>
-            <div class="">
-                <img src="{{weathericon}}" alt="bjfsj" class="h-[150px]">
-            </div>
+<div class="main w-full h-screen flex justify-center items-center py-5">
+  <div
+    class="main1 w-[70%] h-full bg-[#f9f9f9] flex flex-col items-center rounded-3xl border-2 border-emerald-600"
+  >
+    <app-header
+      class="w-full"
+      [placeName]="placeName"
+      [nationality]="nationality"
+      (serchvalue)="search($event)"
+    ></app-header>
+    <h1 class="place hidden">{{ placeName }} | {{ nationality }}</h1>
+    <div
+      class="sin rounded-2xl flex justify-around mt-2 pb-10 w-[85%] bg-[#f4edff] pt-4"
+    >
+      <div
+        class="w-[150px] h-[150px] rounded-[10px] flex items-center flex-col"
+        style="
+          background-image: linear-gradient(
+            to right bottom,
+            #5c6ce7,
+            #6b7ce7,
+            #d2d2d5
+          );
+        "
+      >
+        <div
+          class="w-[100px] h-[25px] bg-[#ffff] rounded-xl translate-y-[-40%] flex justify-center items-center"
+        >
+          <p class="text-[10px]">{{ formattedDate }}</p>
         </div>
-        <div class="w-[60%] h-[140px] rounded-xl bg-[white] translate-y-[-10%] flex justify-around items-center px-2">
-            <div class="w-[100px] h-[100px] rounded-md flex justify-center items-center  flex-col">
-                <h1>wind</h1>
-                <img src="/assets/wind.png" alt="" class="w-[30%]">
-                <h1>{{wind}} km/h</h1>
-            </div>
-            <div class="w-[100px] h-[100px] rounded-md flex justify-center items-center  flex-col">
-                <h1>humidity</h1>
-                <img src="/assets/humidity.png" alt="" class="w-[30%]">
-                <h1>{{humidity}}%</h1>
-            </div>
-            <div class="w-[100px] h-[100px] rounded-md flex justify-center items-center  flex-col">
-                <h1>sealevel</h1>
-                <img src="/assets/high-tide.png" alt="" class="w-[30%]">
-                <h1>{{sealevel}}</h1>
-            </div>
-        </div>
-        <h1 class=" w-[90%] font-bold">5 Days Forcast</h1>
-            <app-futureforcast class=" w-[90%]" [dailyForecastsArray]="dailyForecastsArray"></app-futureforcast>
-   </div>
+        <h1 class="text-[15px] text-[white]">{{ weathertype }}</h1>
+        <h1 class="text-[50px] pl-4 text-[white]">
+          {{ (temperature >= 100 ? temperature / 10 : temperature)?.toFixed(0)
+          }}<sup>°</sup>
+        </h1>
+      </div>
+      <div class="">
+        <img src="{{ weathericon }}" alt="bjfsj" class="image h-[150px]" />
+      </div>
+    </div>
+    <div
+      class="winds w-[60%] h-[140px] rounded-xl bg-[white] translate-y-[-10%] flex justify-around items-center px-2"
+    >
+      <div
+        class="lin w-[100px] h-[100px] rounded-md flex justify-center items-center flex-col text-[15px]"
+      >
+        <h1>wind</h1>
+        <img src="/assets/wind.png" alt="" class="w-[30%]" />
+        <h1>{{ wind }} km/h</h1>
+      </div>
+      <div
+        class="lin w-[100px] h-[100px] rounded-md flex justify-center items-center flex-col text-[15px]"
+      >
+        <h1>humidity</h1>
+        <img src="/assets/humidity.png" alt="" class="w-[30%]" />
+        <h1>{{ humidity }}%</h1>
+      </div>
+      <div
+        class="lin w-[100px] h-[100px] rounded-md flex justify-center items-center flex-col text-[15px]"
+      >
+        <h1>sealevel</h1>
+        <img src="/assets/high-tide.png" alt="" class="w-[30%]" />
+        <h1>{{ sealevel }}</h1>
+      </div>
+    </div>
+    <h1 class="heading w-[90%] font-bold">5 Days Forcast</h1>
 
+    <div
+      class="wind w-[80%] py-2 rounded-xl bg-[white] flex justify-around items-center px-2 overflow-scroll gap-3"
+    >
+      <ng-container *ngFor="let dt of dailyForecastsArray; let i = index">
+        <div
+          class="min-w-[100px] h-[100px] shadow-md rounded-md bg-[#ffffff] flex flex-col justify-center items-center"
+          *ngIf="
+            dailyForecastsArray.length <= 5 ||
+            (dailyForecastsArray.length > 5 && i !== 0)
+          "
+        >
+          <h3 class="font-[cursive] text-[10px] mt-2">{{ dt?.day }}</h3>
+          <img
+            [src]="'https://api.openweathermap.org/img/w/' + (dt?.icons?.[0]) + '.png'"
+            alt="icon"
+            class="h-[35px]"
+          />
+          <p class="weather font-[cursive] text-[12px]">
+            {{ dt?.descriptions?.[0] }}
+          </p>
+          <span class="">{{ (dt?.temperatures?.[0] / 10).toFixed(1) }}°</span>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </div>

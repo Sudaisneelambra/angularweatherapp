@@ -22,7 +22,6 @@ export class HomeComponent {
   constructor(private weatherservice:WeatherserviceService){}
 
   ngOnInit(): void {
-
     this.weatherservice.getcurrentlocation()
     .then((location: { latitude: number, longitude: number}) => {
       this.latitude=location.latitude
@@ -30,7 +29,6 @@ export class HomeComponent {
       if(this.latitude && this.longitude){
         this.weatherservice.getcurrentweather(this.latitude,this.longitude).subscribe({
           next:(res)=>{
-            
             const weatherdata=res
             this.placeName=weatherdata.name
             this.nationality=weatherdata.sys.country
@@ -42,7 +40,8 @@ export class HomeComponent {
             this.sealevel=weatherdata?.main.sea_level
           },
           error:(err)=>{
-            console.log(err);
+            this.weatherservice.errorboolean=true
+            this.weatherservice.errordata='current wether getting failed. please refresh..'
           }
         })
 
@@ -86,14 +85,14 @@ export class HomeComponent {
                 this.dailyForecastsArray.push(forecast);
               }
             } else {
-               console.error(
-                    `failed to fetch weather`
-                  );
+              this.weatherservice.errorboolean=true
+               this.weatherservice.errordata='future forcast weather getting failed.please refresh..'
               
             }
           },
           error:(err)=>{
-            console.log(err);
+            this.weatherservice.errorboolean=true
+            this.weatherservice.errordata='future forcast weather getting failed.please refresh..'
             
           }
         })
@@ -101,8 +100,8 @@ export class HomeComponent {
       
     })
     .catch((error: any) => {
-        console.error('Error getting location:', error);
-        console.log(error);
+      this.weatherservice.errorboolean=true
+      this.weatherservice.errordata='Error getting location'
         
     });
   }
@@ -132,7 +131,8 @@ export class HomeComponent {
         this.sealevel=weatherdata?.main.sea_level
       },
       error:(err)=>{
-        console.log(err);
+        this.weatherservice.errorboolean=true
+        this.weatherservice.errordata='no city found please enter the correct city name'
       }
     })
 
@@ -176,14 +176,14 @@ export class HomeComponent {
             this.dailyForecastsArray.push(forecast);
           }
         } else {
-           console.error(
-                `failed to fetch weather`
-              );
+          this.weatherservice.errorboolean=true
+          this.weatherservice.errordata='no city found please enter the correct city name'
           
         }
       },
       error:(err)=>{
-        console.log(err);
+        this.weatherservice.errorboolean=true
+        this.weatherservice.errordata='no city found please enter the correct city name'
         
       }
     })

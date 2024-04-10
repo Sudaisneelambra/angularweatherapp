@@ -5,20 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './home/header/header.component';
-import { WeatherdescriptionComponent } from './home/futureforcast/futureforcast.component';
 import {HttpClientModule} from'@angular/common/http'
+import { ErrorComponent } from './errormessage/errormessage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    WeatherdescriptionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ErrorComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
